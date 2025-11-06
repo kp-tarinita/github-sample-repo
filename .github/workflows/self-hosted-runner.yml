@@ -19,5 +19,5 @@ jobs:
         run: echo "Running on self-hosted runner"
 
       - name: Show username
-        run: echo "Current user:$env:USERNAME"
+        run: Write-Output "Current user:$env:USERNAME"
         shell: pwsh
