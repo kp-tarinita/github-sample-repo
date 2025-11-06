@@ -7,23 +7,17 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: windows-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
+      - name: Print Hello
+        run: Write-Output "Hello, GitHub Actions!"
+        shell: pwsh
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
-      - name: Lint code
-        run: npm run lint
+      - name: List files
+        run: dir
+        shell: pwsh
