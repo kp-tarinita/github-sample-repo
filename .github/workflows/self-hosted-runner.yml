@@ -1,23 +1,19 @@
-name: Self-Hosted PowerShell Demo
+name: Self-Hosted Runner Test
 
 on: [push]
 
 jobs:
-  build:
-    runs-on: [self-hosted, windows]  # Use your self-hosted Windows runner
+test-selfhosted:
+runs-on: self-hosted
+steps:
+- name: Print Runner Info
+run: |
+echo "Running on self-hosted runner!"
+echo "Machine name: $env:COMPUTERNAME"
+echo "OS Version: $(Get-ComputerInfo | Select-Object -ExpandProperty WindowsVersion)"
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
-      - name: Display runner info
-        shell: pwsh
-        run: |
-          Write-Output "GitHub runner name: $env:RUNNER_NAME"
-          Write-Output "Running on OS: $env:OS"
-          Write-Output "Current user: $env:USERNAME"
-
-      - name: Print Hello World
-        shell: pwsh
-        run: |
-          Write-Output "Hello from self-hosted Windows runner!"
+- name: Run PowerShell script
+run: |
+Write-Host "Hello from self-hosted Windows runner!"
+ 
