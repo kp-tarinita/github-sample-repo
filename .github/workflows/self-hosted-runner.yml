@@ -1,20 +1,23 @@
-name: GitHub Runner Demo
+name: Self-Hosted PowerShell Demo
 
 on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, windows]  # Use your self-hosted Windows runner
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Display runner info
+        shell: pwsh
         run: |
-          echo "GitHub runner name: $RUNNER_NAME"
-          echo "Running on OS: $(uname -a)"
+          Write-Output "GitHub runner name: $env:RUNNER_NAME"
+          Write-Output "Running on OS: $env:OS"
+          Write-Output "Current user: $env:USERNAME"
 
-      - name: Run a sample Python script
+      - name: Print Hello World
+        shell: pwsh
         run: |
-          echo "print('Hello from GitHub Runner!')" > demo.py
-          python3 demo.py
+          Write-Output "Hello from self-hosted Windows runner!"
