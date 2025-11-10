@@ -1,19 +1,20 @@
-name: Self-Hosted Runner Workflow
+name: GitHub Runner Demo
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push]
 
 jobs:
   build:
-    runs-on: [self-hosted, windows]
-
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Print Hello
-        run: Write-Output "Running on self-hosted Windows runner"
-        shell: pwsh
+      - name: Display runner info
+        run: |
+          echo "GitHub runner name: $RUNNER_NAME"
+          echo "Running on OS: $(uname -a)"
+
+      - name: Run a sample Python script
+        run: |
+          echo "print('Hello from GitHub Runner!')" > demo.py
+          python3 demo.py
