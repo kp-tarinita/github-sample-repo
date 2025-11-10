@@ -7,13 +7,11 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Print Runner Info
-        shell: pwsh
         run: |
           Write-Output "Running on self-hosted runner!"
           Write-Output "Machine name: $env:COMPUTERNAME"
           Write-Output "OS Version: $(Get-ComputerInfo | Select-Object -ExpandProperty WindowsVersion)"
 
       - name: Run PowerShell script
-        shell: pwsh
         run: |
           Write-Host "Hello from self-hosted Windows runner!"
