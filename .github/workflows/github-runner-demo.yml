@@ -1,0 +1,24 @@
+name: GitHub Runner Demo (PowerShell)
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest  # Use a Windows runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Display runner info
+        shell: pwsh
+        run: |
+          Write-Output "GitHub runner name: $env:RUNNER_NAME"
+          Write-Output "Running on OS: $env:OS"
+          Write-Output "Username: $env:USERNAME"
+
+      - name: Run a sample PowerShell script
+        shell: pwsh
+        run: |
+          Set-Content -Path demo.ps1 -Value 'Write-Output "Hello from GitHub Runner (PowerShell)!"'
+          .\demo.ps1
