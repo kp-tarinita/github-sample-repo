@@ -3,17 +3,17 @@ name: Self-Hosted Runner Test
 on: [push]
 
 jobs:
-test-selfhosted:
-runs-on: self-hosted
-steps:
-- name: Print Runner Info
-run: |
-echo "Running on self-hosted runner!"
-echo "Machine name: $env:COMPUTERNAME"
-echo "OS Version: $(Get-ComputerInfo | Select-Object -ExpandProperty WindowsVersion)"
+  test-selfhosted:
+    runs-on: self-hosted
+    steps:
+      - name: Print Runner Info
+        shell: pwsh
+        run: |
+          Write-Output "Running on self-hosted runner!"
+          Write-Output "Machine name: $env:COMPUTERNAME"
+          Write-Output "OS Version: $(Get-ComputerInfo | Select-Object -ExpandProperty WindowsVersion)"
 
-
-- name: Run PowerShell script
-run: |
-Write-Host "Hello from self-hosted Windows runner!"
- 
+      - name: Run PowerShell script
+        shell: pwsh
+        run: |
+          Write-Host "Hello from self-hosted Windows runner!"
